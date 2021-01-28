@@ -38,8 +38,8 @@ jobs:
             sudo apt-get install default-mysql-client
             sudo docker-php-ext-install pdo_mysql
             dockerize -wait tcp://localhost:3306 -timeout 1m
-      - run: cd ecsite2/; php artisan migrate
-      - run: cd ecsite2/; php artisan db:seed
+      - run: php artisan migrate
+      - run: php artisan db:seed
       - run:
           name: php test
           command: vendor/bin/phpunit
