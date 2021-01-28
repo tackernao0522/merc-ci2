@@ -22,7 +22,7 @@ class CreateSecondaryCategoriesTable extends Migration
 
             $table->foreign('primary_category_id')
                 ->references('id')
-                ->on('primary_categories');
+                ->on('primary_categories')->onDelete('cascade');
         });
     }
 
