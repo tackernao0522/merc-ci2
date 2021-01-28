@@ -3,6 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.4-node-browsers
+      - image: circleci/mysql:5.7
+    environment:
+      - APP_ENV: testing
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true;
     steps:
       - checkout
       - run: sudo composer self-update
@@ -26,8 +31,15 @@ jobs:
           paths:
             - node_modules
       - run: npm run dev
-      # - run: php artisan migrate --force
-      # - run: php artisan db:seed
+      - run:
+          name: get ready for mysql
+          command: |
+            sudo apt-get update
+            sudo apt-get install default-mysql-client
+            sudo docker-php-ext-install pdo_mysql
+            dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: php artisan migrate
+      - run: php artisan db:seed
       - run:
           name: php test
           command: vendor/bin/phpunit
