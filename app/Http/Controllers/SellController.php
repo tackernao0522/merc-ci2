@@ -64,7 +64,7 @@ class SellController extends Controller
 
         Image::make($file)->fit(300, 300)->save($tempPath);
 
-        $filePath = Storage::disk('public')
+        $filePath = Storage::disk('s3')
             ->putFile('item-images', new File($tempPath));
 
         return basename($filePath);
