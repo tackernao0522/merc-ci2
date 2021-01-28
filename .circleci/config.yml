@@ -58,6 +58,7 @@ jobs:
             npm ci && \
             npm run prod && \
             php artisan migrate --force && \
+            php artisan db:seed --force && \
             php artisan config:cache"
 
 workflows:
