@@ -44,6 +44,26 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${AWS::StackName}-public-subnet
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Ref PublicSubnetCidrBlock
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
+      AvailabilityZone: ap-northeast-1c
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-public-subnet
+  PublicSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Ref PublicSubnetCidrBlock
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
+      AvailabilityZone: ap-northeast-1d
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-public-subnet
   PrivateSubnet01:
     Type: AWS::EC2::Subnet
     Properties:
@@ -64,6 +84,16 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${AWS::StackName}-private-subnet-02
+  PrivateSubnet03:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: !Ref PrivateSubnet02CidrBlock
+      MapPublicIpOnLaunch: false
+      VpcId: !Ref VPC
+      AvailabilityZone: ap-northeast-1d
+      Tags:
+        - Key: Name
+          Value: !Sub ${AWS::StackName}-private-subnet-03
   DBSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
@@ -72,6 +102,7 @@ Resources:
       SubnetIds:
         - !Ref PrivateSubnet01
         - !Ref PrivateSubnet02
+        - !Ref PrivateSubnet03
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
