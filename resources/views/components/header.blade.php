@@ -46,7 +46,7 @@
                         @if (!empty($user->avatar_file_name))
                         <img src="{{ Storage::disk('s3')->url("avatars/{$user->avatar_file_name}") }}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
                         @else
-                        <img src="/image/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                        <img src="/images/cat2.jpg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
                         @endif
                         {{ $user->name }} <span class="caret"></span>
                     </a>
