@@ -12,7 +12,7 @@
                     @if (!empty($item->seller->avatar_file_name))
                     <img src="{{ Storage::disk('s3')->url("avatars/{$item->seller->avatar_file_name}") }}" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
                     @else
-                    <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
+                    <img src="/images/cat2.jpg" class="rounded-circle" style="object-fit: cover; width: 35px; height: 35px;">
                     @endif
                     {{ $item->seller->name }}
                 </td>
